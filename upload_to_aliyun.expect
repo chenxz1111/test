@@ -2,13 +2,11 @@
 
 set DEPLOY_USERNAME [lindex $argv 0]
 set DEPLOY_PASSWORD [lindex $argv 1]
-set DEPLOY_JUMP_HOSTNAME [lindex $argv 2]
-set DEPLOY_HOSTNAME [lindex $argv 3]
-set HUGO_OUTPUT_PATH [lindex $argv 4]
-set DEPLOY_DEST_PATH [lindex $argv 5]
+set DEPLOY_HOSTNAME [lindex $argv 2]
+set HUGO_OUTPUT_PATH [lindex $argv 3]
+set DEPLOY_DEST_PATH [lindex $argv 4]
 
-
-spawn rsync -av --delete -e "ssh -J $DEPLOY_USERNAME@$DEPLOY_JUMP_HOSTNAME" $HUGO_OUTPUT_PATH/ $DEPLOY_USERNAME@$DEPLOY_HOSTNAME:$DEPLOY_DEST_PATH
+spawn scp -r -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" $HUGO_OUTPUT_PATH/ $DEPLOY_USERNAME@$DEPLOY_HOSTNAME:$DEPLOY_DEST_PATH
 
 puts "### connecting to host server... ###"
 
@@ -24,7 +22,7 @@ expect {
         exp_continue
     }
 
-    "assword:" {
+    "password:" {
         send -- "$DEPLOY_PASSWORD\r"
         exp_continue
     }
