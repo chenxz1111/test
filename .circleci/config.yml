@@ -62,4 +62,4 @@ workflows:
           filters: # only deploy when branch is prod
             branches:
               only:
-                - main
+                - circleci-project-setup
