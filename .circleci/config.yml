@@ -18,7 +18,7 @@ jobs:
 
       # build with Hugo
       - run: mkdir -p workspace
-      - run: HUGO_ENV=production hugo -v -d workspace/hugo_output
+      - run: hugo -v -d workspace/hugo_output
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job. 
       - persist_to_workspace:
