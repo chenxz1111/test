@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cibuilds/hugo:latest
+      - image: cibuilds/hugo:0.110.0
      # more environment variables used in this script are stored in the project setting page
     steps:
 
@@ -33,7 +33,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cibuilds/hugo:latest
+      - image: cibuilds/hugo:0.110.0
     working_directory: /home/circleci/hugo
     environment: # more environment variables used in this script are stored in the project setting page
       HUGO_OUTPUT_PATH: /home/circleci/hugo/public
